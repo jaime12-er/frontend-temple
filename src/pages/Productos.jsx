@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { ShoppingBag, Loader, AlertCircle } from 'lucide-react';
+import { Youtube } from 'lucide-react';
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
@@ -13,7 +14,7 @@ const Productos = () => {
     precio: '',
     descripcion: '',
     stock: '',
-    imagen_url: ''
+    imagen_url: '', Youtube_id: '',
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -184,6 +185,18 @@ const Productos = () => {
                 className="max-h-full object-contain"
               />
             </div>
+            {prod.Youtube_id && (
+              <div className="p-4 bg-slate-100">
+                <iframe
+                  width="100%"
+                  height="200"
+                  src={`https://www.youtube.com/embed/${prod.Youtube_id}`}
+                  title={prod.title || prod.nombre}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}  
 
             <div className="p-4 flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-2">
